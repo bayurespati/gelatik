@@ -36,9 +36,15 @@ use App\Http\Controllers\Incident\ReportSecurityController;
 
 //LANDING
 Route::get('/beranda', [FrontController::class, 'beranda'])->name('index.beranda');
+Route::get('/about-front', [FrontController::class, 'about'])->name('index.about.front');
+Route::get('/service-front', [FrontController::class, 'service'])->name('index.service.front');
+Route::get('/stats-front', [FrontController::class, 'stats'])->name('index.stats.front');
+Route::get('/team-front', [FrontController::class, 'team'])->name('index.team.front');
+Route::get('/artikel-front', [FrontController::class, 'artikel'])->name('index.artikel.front');
+Route::get('/contact-front', [FrontController::class, 'contact'])->name('index.contact.front');
 //LOGIN
 Route::get('/', function () {
-    return redirect()->route('index.beranda', );
+    return redirect()->route('index.beranda',);
 });
 
 //LOGOUT

@@ -29,23 +29,23 @@ class FrontController extends Controller
     {
         $about = About::first();
 
-        $layanans=Layanan::orderBy('id')->get();
+        $layanans = Layanan::orderBy('id')->get();
 
-        $vprs=Vpr::orderBy('id')->get();
+        $vprs = Vpr::orderBy('id')->get();
 
-        $entrances=Entrance::where('status', 'process')->orderBy('status')->get();
+        $entrances = Entrance::where('status', 'process')->orderBy('status')->get();
 
-        $intranets=Intranet::orderBy('id')->get()->count();
+        $intranets = Intranet::orderBy('id')->get()->count();
 
-        $whms=Whm::orderBy('id')->get();
+        $whms = Whm::orderBy('id')->get();
 
-        $softwares=Software::orderBy('id')->get();
+        $softwares = Software::orderBy('id')->get();
 
-        $thumbnails=Thumbnail::orderBy('id')->get();
+        $thumbnails = Thumbnail::orderBy('id')->get();
 
-        $teams=Team::orderBy('id')->get();
+        $teams = Team::orderBy('id')->get();
 
-        $reportsecurity=Reportsecurity::orderBy('id')->get();
+        $reportsecurity = Reportsecurity::orderBy('id')->get();
 
         $chartTicketByCategory = new RatioTicketByCategory(new LarapexChart);
         $chartTicketByPriority = new TotalTicketByPriority(new LarapexChart);
@@ -53,14 +53,52 @@ class FrontController extends Controller
         $chartTicketByMonth = new TotalTicketByMonth(new LarapexChart);
         $chartReportSecurityByTitle = new TotalReportSecurityByTitle(new LarapexChart);
 
+        return view('frontend.index');
+
         return view('guest.beranda.index-beranda', [
-            'about'=>$about, 'thumbnails'=>$thumbnails, 'layanans'=>$layanans,
-            'vprs'=>$vprs, 'entrances'=>$entrances, 'intranets'=>$intranets, 'softwares'=>$softwares, 'teams'=>$teams,
-            'chartTicketByCategory'=>$chartTicketByCategory->build(),
-            'chartTicketByPriority'=>$chartTicketByPriority->build(),
-            'chartTicketByStatus'=>$chartTicketByStatus->build(),
-            'chartTicketByMonth'=>$chartTicketByMonth->build(),
-            'chartReportSecurityByTitle'=>$chartReportSecurityByTitle->build(),
+            'about' => $about,
+            'thumbnails' => $thumbnails,
+            'layanans' => $layanans,
+            'vprs' => $vprs,
+            'entrances' => $entrances,
+            'intranets' => $intranets,
+            'softwares' => $softwares,
+            'teams' => $teams,
+            'chartTicketByCategory' => $chartTicketByCategory->build(),
+            'chartTicketByPriority' => $chartTicketByPriority->build(),
+            'chartTicketByStatus' => $chartTicketByStatus->build(),
+            'chartTicketByMonth' => $chartTicketByMonth->build(),
+            'chartReportSecurityByTitle' => $chartReportSecurityByTitle->build(),
         ]);
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
+    public function service()
+    {
+        return view('frontend.service');
+    }
+
+    public function stats()
+    {
+        return view('frontend.stats');
+    }
+
+    public function team()
+    {
+        return view('frontend.team');
+    }
+
+    public function artikel()
+    {
+        return view('frontend.artikel');
+    }
+
+    public function contact()
+    {
+        return view('frontend.contact');
     }
 }
